@@ -1,8 +1,6 @@
 package ducquan.id.vn.mycalculator
 
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -95,6 +93,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun onOperatorClick(newOperator: String) {
         bieuThuc += display
+        if (bieuThuc == "")
+            bieuThuc = ketQua.toString()
         if (!bieuThuc[bieuThuc.length - 1].isDigit())
             bieuThuc = bieuThuc.dropLast(1)
         bieuThuc += newOperator
@@ -108,7 +108,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun onEqualClick() {
         bieuThuc += display
-        ketQua = evaluateExpression(bieuThuc)
+        if (bieuThuc != "")
+            ketQua = evaluateExpression(bieuThuc)
         screen.text = ketQua.toString()
         bieuThuc = ""
         display = ""
@@ -117,23 +118,26 @@ class MainActivity : AppCompatActivity() {
     private fun clear() {
         display = ""
         bieuThuc = ""
-        screen.text = ""
-    }
-
-    private fun clearEntry() {
-        display = ""
         screen.text = "0"
     }
 
+    private fun clearEntry() {
+        if (display != "") {
+            display = ""
+            screen.text = "0"
+        }
+    }
+
     private fun backSpace() {
-        if (display.length == 1) {
-            display = "0"
-            screen.text = display
-        }
-        else {
-            display = display.dropLast(1)
-            screen.text = display
-        }
+        if (display != "")
+            if (display.length == 1) {
+                display = "0"
+                screen.text = display
+            }
+            else {
+                display = display.dropLast(1)
+                screen.text = display
+            }
     }
 
     fun evaluateExpression(expression: String): Double {
