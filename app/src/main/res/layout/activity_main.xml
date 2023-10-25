@@ -159,6 +159,8 @@
         android:background="@drawable/border_shape"
         android:gravity="bottom|end"
         android:text="@string/_0"
+        android:padding="8dp"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
