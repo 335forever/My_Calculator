@@ -22,4 +22,6 @@
     <string name="doi_dau">+/-</string>
     <string name="bang">=</string>
     <string name="_0">0</string>
+    <string name="button_zero">Button zero</string>
+    <string name="so_khong">so_khong</string>
 </resources>
